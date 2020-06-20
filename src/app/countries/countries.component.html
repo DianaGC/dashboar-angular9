@@ -1,0 +1,73 @@
+<mat-card>
+    <div class="countries">
+        <h2 class="countries-header">Countries</h2>
+        <br/>
+    <form class="example-form" [formGroup] = "countryForm" (ngSubmit)="saveData()">
+        <label>Code:</label>
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+            <input type="code" placeholder="740215" formControlName="code">            
+        </p> 
+        <label>Name:</label>
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+            <input type="name" placeholder="Ecuador" formControlName="name">
+        </p> 
+
+    </form>
+    </div>
+
+    <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)="saveData()">Save</button> 
+    </div>
+    <br/>
+
+
+
+
+
+      <div class="example-container mat-elevation-z8">
+		<mat-table #table [dataSource]="dataSource">
+
+		<!-- Position Column -->
+		<ng-container matColumnDef="id">
+			<mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+			<mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+		</ng-container>
+
+		<!-- Name Column -->
+		<ng-container matColumnDef="name">
+			<mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+			<mat-cell *matCellDef="let element">
+				<mat-form-field floatLabel="never">
+					<input matInput placeholder="Name" [value]="element.name" [(ngModel)]="element.name">
+				</mat-form-field>
+			</mat-cell>
+		</ng-container>
+
+		
+		<!-- Symbol Column -->
+		<ng-container matColumnDef="code">
+			<mat-header-cell *matHeaderCellDef> code </mat-header-cell>
+			<mat-cell *matCellDef="let element">
+				<mat-form-field floatLabel="never">
+					<input matInput placeholder="Symbol" [value]="element.code" [(ngModel)]="element.code">
+				</mat-form-field>
+			</mat-cell>
+        </ng-container>
+        
+   
+         <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="action-link" > 
+            <button mat-icon-button color="warn" (click)="saveData()">
+                <mat-icon>delete</mat-icon>
+             </button>
+            </mat-cell>
+        </ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+	</mat-table>
+</div>
+</mat-card>
+
